@@ -13,12 +13,14 @@ def clear():
 
 def F_P(i, n):
 
-    """Calcula o fator de equivalencia para determinar um valor futuro F dado um valor presente P sem pagamentos periódicos.
+    """
+    Calcula o fator de equivalencia para determinar um valor futuro F dado um valor presente P sem pagamentos periódicos.
     
     Exemplo: dado um valor presente de R$ 1.000,00 que rende a 10% a.m. por 5 meses,
     o valor do capital total ao final desses 5 meses vai ser dado pela seguinte equacao:
     
-    F = 1000 * F_P(i=10, n=5)"""
+    F = 1000 * F_P(i=10, n=5)
+    """
 
     return (1+i*0.01)**n
 
