@@ -1,5 +1,6 @@
 import os
 from scipy.optimize import newton
+from locale import setlocale, currency, LC_ALL
 
 modulo = __name__
 
@@ -211,6 +212,15 @@ def periodos(P=None, F=None, A=0, i=0, ante=False):
     else:
         return None
     return newton(func, 0.01, fprime=None, args=(), tol=1.48e-10, maxiter=100, fprime2=None)
+
+def moeda(valor):
+
+    """
+    Formata um valor numerico na forma padrão brasileira com separador decimal e separadores de milhares
+    """
+
+    setlocale(LC_ALL, 'pt_BR.UTF-8')
+    return currency(valor, grouping=True, symbol=None)
 
 if modulo == "__main__":
     print(F"Este módulo é para ser usado com um terminal interativo de Python!")
