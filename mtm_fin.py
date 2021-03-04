@@ -226,18 +226,18 @@ def juros_sac(P, n, i, k):
 
     return (P - (P/n)*(k-1))*i
 
-def juros_saf(A, amort1, i, k):
+def juros_saf(p, P, i, k):
 
     """
     Calcula os juros apos pagar a k-esima prestacao sob o sistema SAF.
 
-    Exemplo: uma divida de R$ 150.000,00 é quitada em parcelas mensais a uma taxa de 25% a.m.
-    Sabendo que a amortização na primeira parcela vale R$ 1.000,00, quanto valem os juros j2 incluido na segunda parcela?
+    Exemplo: uma divida de R$ 150.000,00 é quitada em parcelas mensais de R$ 500,00 a uma taxa de 25% a.m.
+    Quanto valem os juros j2 incluido na segunda parcela?
 
-    j2 = juros_saf(P=150000, amort1=1000, k=2, i=0.25)
+    j2 = juros_saf(p=500, P=15000, i=0.25, k=2)
     """
 
-    return A - amort1*((1+i)**(k-1))
+    return p - (p-P*i)*((1+i)**(k-1))
 
 def juros_totais_sac(P, i, n):
 
@@ -252,7 +252,7 @@ def juros_totais_sac(P, i, n):
 
     return 0.5*P*i*(n+1)
 
-def juros_totais_saf(P, A, n):
+def juros_totais_saf(p, P, n):
 
     """
     Calcula os juros totais para uma quitacao de divida sob o sistema SAF.
@@ -260,10 +260,10 @@ def juros_totais_saf(P, A, n):
     Exemplo: uma divida de R$ 3.000.000,00 foi paga em 30 parcelas trimestrais de R$ 15.000,00
     Qual foi o total de juros j pagos?
 
-    j = juros_totais_saf(P=3000000, A=15000, n=30)
+    j = juros_totais_saf(p=15000, P=3000000, n=30)
     """
 
-    return n*A-P
+    return n*p-P
 
 def SD_sac(P, n, k):
 
@@ -278,7 +278,7 @@ def SD_sac(P, n, k):
 
     return P-k*(P/n)
 
-def SD_saf(A, i, n, k):
+def SD_saf(p, i, n, k):
 
     """
     Calcula o saldo devedor apos pagar a k-esima parcela sob o sistema SAF.
@@ -286,10 +286,10 @@ def SD_saf(A, i, n, k):
     Exemplo: feito um parcelamento de um produto em 15 parcelas mensais de R$ 200,00,
     quanto que o comprador ainda deve depois de pagar a decima parcela?
 
-    SD5 = SD_sac(A=200, n=15, k=10)
+    SD5 = SD_sac(p=200, n=15, k=10)
     """
 
-    return A*((1-(1+i)**(k-n))/i)
+    return p*((1-(1+i)**(k-n))/i)
 
 def parcela_sac(P, i, n, k):
     
@@ -299,23 +299,23 @@ def parcela_sac(P, i, n, k):
     Exemplo: dada uma divida de R$ 1.000,00 para ser paga em 20 parcelas com uma taxa de 4% ao periodo.
     Qual e o valor a ser pago na quinta parcela?
 
-    A5 = parcela_sac(P=1000, i=0.04, n=20, k=5)
+    p5 = parcela_sac(P=1000, i=0.04, n=20, k=5)
     """
 
     return P/n + (P-(P/n)*(k-1))*i
 
-def amortizacao_saf(amort1, i, k):
+def amortizacao_saf(p, P, i, k):
 
     """
     Calcula quanto esta sendo amortizado na k-esima parcela de uma divida sob o sistema SAF
 
-    Exemplo: dada uma divida com uma taxa de 30% e uma parcela inicial com amortizacao de R$ 450,00,
+    Exemplo: dada uma divida de R$ 2.000,00 com uma taxa de 30% e parcelas de R$ 450,00,
     quanto sera amortizado na terceira parcela?
 
-    amort3 = amortizacao_saf(amort1=450, i=0.3, k=3)
+    A3 = amortizacao_saf(p=450, P=2000, i=0.3, k=3)
     """
 
-    return amort1*((1+i)**(k-1))
+    return (p-P*i)*((1+i)**(k-1))
 
 def moeda(valor):
 
